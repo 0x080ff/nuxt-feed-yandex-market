@@ -12,36 +12,36 @@ const defaultOptions = {
 }
 
 export default async function yandexMarket () {
-  const options = Object.assign(defaultOptions, this.options.yandexMarket)
+  const options = this.options.yandexMarket.map(o => ({ ...defaultOptions, ...o }))
 
   const feedCache = new AsyncCache({
     load (key, callback) {
-      generate(options, callback)
+      generate(options[key], callback)
         .catch(err => console.error(err))
     }
   })
 
   feedCache.get = pify(feedCache.get)
 
-  this.nuxt.hook('generate:before',
-    async () => {
-      const xmlGeneratePath = path.resolve(this.options.srcDir, path.join('static', options.path))
+  options.forEach((feedOptions, index) => {
+    this.nuxt.hook('generate:done', async () => {
+      const xmlGeneratePath = path.resolve(this.options.srcDir, path.join('static', feedOptions.path))
       await fs.removeSync(xmlGeneratePath)
-      await fs.outputFile(xmlGeneratePath, await feedCache.get('yml'))
-    }
-  )
+      await fs.outputFile(xmlGeneratePath, await feedCache.get(index))
+    })
 
-  this.addServerMiddleware({
-    path: options.path,
-    async handler (req, res, next) {
-      try {
-        const xml = await feedCache.get('yml')
-        res.setHeader('Content-Type', 'application/xml; charset=UTF-8')
-        res.end(xml)
-      } catch (err) /* istanbul ignore next */ {
-        next(err)
+    this.addServerMiddleware({
+      path: feedOptions.path,
+      async handler (req, res, next) {
+        try {
+          const xml = await feedCache.get(index)
+          res.setHeader('Content-Type', 'application/xml; charset=UTF-8')
+          res.end(xml)
+        } catch (err) {
+          next(err)
+        }
       }
-    }
+    })
   })
 
   async function generate (options, callback) {
