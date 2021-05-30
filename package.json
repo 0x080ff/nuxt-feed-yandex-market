@@ -1,11 +1,11 @@
 {
   "name": "nuxt-feed-yandex-market",
-  "version": "0.4.3",
+  "version": "0.0.1",
   "description": "A Nuxt.js module that generates an XML file for Yandex.Market",
   "contributors": [
     {
-      "name": "yesworld",
-      "email": "a.yesworld@gmail.com"
+      "name": "Ilya Protas",
+      "email": "art-i-fakt@ya.ru"
     }
   ],
   "scripts": {
@@ -56,10 +56,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yesworld/nuxt-feed-yandex-market.git"
+    "url": "https://github.com/0x080ff/nuxt-feed-yandex-market.git"
   },
   "bugs": {
-    "url": "https://github.com/yesworld/nuxt-feed-yandex-market/issues"
+    "url": "https://github.com/0x080ff/nuxt-feed-yandex-market.git"
   },
   "keywords": [
     "nuxtjs",

@@ -6,20 +6,22 @@ A wrapper over [Yandex Market Language(YML)](https://github.com/LotusTM/yandex-m
 
 ## Simple usage
 
-- Install `yarn add nuxt-feed-yandex-market`
-- Add `nuxt-feed-yandex-market` to `modules` section of `nuxt.config.js`
+- Install `npm i https://github.com/0x080ff/nuxt-feed-yandex-market.git`
 
 ```js
 export default {
   modules: [
     'nuxt-feed-yandex-market'
   ],
-  yandexMarket: {
-    data: {}, // JSON with data or a function that returns the JSON 
-    path: '/yandex-market.xml', // The route to your xml file
-    validate: true,
-    cacheTime: 1000 * 3600 * 24 
-  }
+  yandexMarket: [
+    {
+      data: {}, // JSON with data or a function that returns the JSON 
+      path: '/yandex-market.xml', // The route to your xml file
+      validate: true,
+      cacheTime: 1000 * 3600 * 24 
+    }
+    ...
+  ]
 }
 ```
 
