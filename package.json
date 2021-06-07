@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-feed-yandex-market",
+  "name": "nuxt-multifeed-yandex-market",
   "version": "0.0.1",
   "description": "A Nuxt.js module that generates an XML file for Yandex.Market",
   "contributors": [

@@ -6,7 +6,7 @@ A wrapper over [Yandex Market Language(YML)](https://github.com/LotusTM/yandex-m
 
 ## Simple usage
 
-- Install `npm i https://github.com/0x080ff/nuxt-feed-yandex-market.git`
+- Install `npm i nuxt-multifeed-yandex-market.git`
 
 ```js
 export default {
